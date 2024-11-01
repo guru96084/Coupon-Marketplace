@@ -1,0 +1,16 @@
+# Allow access to all files in the directory
+<FilesMatch "\.(php|html|htm)$">
+    Require all granted
+</FilesMatch>
+
+# Enable URL rewriting (if needed)
+RewriteEngine On
+
+# Handle requests for non-existent files
+# Uncomment if you're using URL rewriting rules
+# RewriteCond %{REQUEST_FILENAME} !-f
+# RewriteCond %{REQUEST_FILENAME} !-d
+# RewriteRule ^(.*)$ index.php?$1 [L,QSA]
+
+# Prevent directory browsing
+Options -Indexes

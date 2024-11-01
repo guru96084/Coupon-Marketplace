@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Coupon</title>
+    <link rel="stylesheet" href="css/contact-style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+</head>
+<body>
+    <header>
+        <div class="logo">Coupon Marketplace</div><br>
+        <div>
+            <a href="index.html">Home</a>
+        </div>
+    </header>
+    <div class="container">
+        <h1>Upload a Coupon</h1><br>
+        <form action="upload.php" method="post" enctype="multipart/form-data" class="form-label">
+            
+            <label for="item-name" class="form-label">Coupon Name:</label>
+            <input type="text" id="item-name" name="itemName" class="form-control" required><br>
+
+            <label for="category" class="form-label">Category:</label>
+            <select id="category" name="category" class="form-control" required>
+                <option value="Food & Beverage">Food & Beverage</option>
+                <option value="Fashion & Apparel">Fashion & Apparel</option>
+                <option value="Electronics">Electronics</option>
+                <option value="Books">Books</option>
+                <option value="Vehicles">Vehicles</option>
+            </select><br>
+
+            <label for="item-photo" class="form-label">Coupon Photo:</label>
+            <input type="file" id="item-photo" name="itemImage" class="form-control" required><br>
+
+            <label for="item-description" class="form-label">Description:</label>
+            <textarea id="item-description" name="description" rows="4" class="form-control" required></textarea><br>
+
+            <label for="expiration-date" class="form-label">Expiration Date:</label>
+            <input type="date" id="expiration-date" name="expirationDate" class="form-control" required><br>
+
+            <button type="submit" class="upload-button">Upload Item</button>
+        </form>
+    </div>
+    <footer>
+        &copy; 2024 Coupon Marketplace. All rights reserved.
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+    const form = document.querySelector("#upload-coupon");
+    form.addEventListener("submit", function(event) {
+        event.preventDefault(); 
+
+        const formData = new FormData(form);
+        
+        fetch('upload.php', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                
+                Swal.fire({
+                    title: 'Success!',
+                    text: data.message,
+                    icon: 'success',
+                    confirmButtonText: 'OK'
+                }).then(() => {
+                   
+                    window.location.href = 'index.php';
+                });
+            } else {
+                
+                Swal.fire({
+                    title: 'Error!',
+                    text: data.message,
+                    icon: 'error',
+                    confirmButtonText: 'OK'
+                });
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            Swal.fire({
+                title: 'Error!',
+                text: 'An error occurred during the upload. Please try again.',
+                icon: 'error',
+                confirmButtonText: 'OK'
+            });
+        });
+    });
+});
+
+    </script>
+</body>
+</html>

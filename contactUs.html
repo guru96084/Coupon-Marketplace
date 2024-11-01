@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us</title>
+    <link rel="stylesheet" href="css/contact-style.css">
+    
+</head>
+<body>
+    <header>
+            <div class="logo">Coupon Marketplace</div><br>
+            <div>
+                <a href="index.html">Home</a>
+            </div>
+    </header>
+    <div class="contact-container">
+        <h1>Let's Connect</h1>
+        <p>Feel free to reach out for any inquiries or collaborations.</p>
+        <form action="mailto:your_email@example.com" method="post">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+            <label for="coupon">Select Coupon Categories</label>
+            <select name="coupon" id="coupon">
+                <option value="">None</option>
+                <option value="">Foods & Beverage</option>
+                <option value="">Fashions & Apparel</option>
+                <option value="">Electronics</option>
+                <option value="">Books</option>
+                <option value="">Vehicles</option>
+            </select>
+            <label for="message">Message:</label>
+            <textarea id="message" name="message" rows="5" required></textarea>
+            <button type="submit">Send</button>
+        </form>
+    </div>
+    <footer>
+        &copy; 2024 Coupon Marketplace. All rights reserved.
+    </footer>
+</body>
+</html>
